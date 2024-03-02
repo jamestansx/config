@@ -1,3 +1,5 @@
 [default.files]
 foot = "~/.config/foot"
 fish = "~/.config/fish"
+gnupg = "~/.config/gnupg"
+ssh = "~/.ssh"
