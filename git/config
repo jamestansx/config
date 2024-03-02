@@ -1,0 +1,33 @@
+[user]
+	name = James Tan
+	email = jamestansx@gmail.com
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
+[branch]
+	sort = -committerdate
+[commit]
+	verbose = true
+	cleanup = scissors
+	#gpgSign = true
+[help]
+	autocorrect = 1
+[rerere]
+	enabled = true
+[diff]
+	algorithm = histogram
+	indentHeuristic = true
+	tool = nvimdiff
+[merge]
+	conflictStyle = zdiff3
+	tool = nvimdiff
+[pull]
+	ff = only
+[pull]
+	autoSetupRemote = true
+[fetch]
+	prune = true
+	pruneTags = true
+
+# vim: ft=gitconfig ts=4 sw=4
