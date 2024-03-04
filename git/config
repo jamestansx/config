@@ -24,7 +24,7 @@
 	tool = nvimdiff
 [pull]
 	ff = only
-[pull]
+[push]
 	autoSetupRemote = true
 [fetch]
 	prune = true
