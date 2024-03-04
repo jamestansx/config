@@ -9,7 +9,7 @@ vim.keymap.set("n", "q", "<C-w>c", {
     noremap = true,
 })
 
-require("jamestansx.utils").create_autocmd("BufEnter", {
+_G.create_autocmd("BufEnter", {
     group = "qf",
     buffer = 0,
     nested = true,

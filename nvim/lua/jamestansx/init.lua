@@ -1,4 +1,9 @@
-local create_autocmd = require("jamestansx.utils").create_autocmd
+_G.create_autocmd = function(args, opts)
+    if opts.group and vim.fn.exists("#" .. opts.group) == 0 then
+        vim.api.nvim_create_augroup(opts.group, { clear = true })
+    end
+    vim.api.nvim_create_autocmd(args, opts)
+end
 
 -- Disable remote plugin providers
 vim.g.loaded_python3_provider = 0
@@ -122,7 +127,7 @@ vim.opt.wildignore:append({ "*.zip", "*.gz", "*.bz2" }) -- zip
 vim.opt.isfname:append("@-@")
 
 -- https://vi.stackexchange.com/a/9366/37072
-create_autocmd("FileType", {
+_G.create_autocmd("FileType", {
     group = "SetFormatOptions",
     command = [[setlocal formatoptions-=o]],
 })
@@ -196,7 +201,7 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 --
 --------------------------------------------------------------------------------
 
-create_autocmd("TextYankPost", {
+_G.create_autocmd("TextYankPost", {
     group = "HiTextOnYank",
     callback = function()
         vim.highlight.on_yank({
@@ -205,10 +210,10 @@ create_autocmd("TextYankPost", {
     end,
 })
 
-create_autocmd("BufRead", {
+_G.create_autocmd("BufRead", {
     group = "RestoreCursor",
     callback = function()
-        create_autocmd("FileType", {
+        _G.create_autocmd("FileType", {
             group = "RestoreCursor",
             buffer = 0,
             once = true,
@@ -227,10 +232,10 @@ create_autocmd("BufRead", {
     end,
 })
 
-create_autocmd("BufNewFile", {
+_G.create_autocmd("BufNewFile", {
     group = "MakeDirectory",
     callback = function()
-        create_autocmd("BufWritePre", {
+        _G.create_autocmd("BufWritePre", {
             group = "MakeDirectory",
             buffer = 0,
             once = true,
