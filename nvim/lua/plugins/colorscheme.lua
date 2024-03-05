@@ -23,6 +23,9 @@ return {
                 PmenuSel = { fg = "NONE", bg = T.ui.bg_p2 },
                 PmenuSbar = { bg = T.ui.bg_m1 },
                 PmenuThumb = { bg = T.ui.bg_p2 },
+
+                -- Avoid lsp semantic token
+                ["@lsp.type.comment"] = {},
             }
         end,
     },

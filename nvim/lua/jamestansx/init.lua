@@ -275,7 +275,7 @@ if package.loaded["lazy"] == nil then
         { import = "plugins" },
     }, {
         defaults = { lazy = true },
-        install = { colorscheme = { "kanagawa" } },
+        install = { colorscheme = { "kanagawa-dragon" } },
         checker = { enabled = false },
         change_detection = { notify = false },
         performance = {
