@@ -81,6 +81,11 @@ return {
         },
         config = function()
             local lspconfig = require("lspconfig")
+            local capabilities = vim.tbl_deep_extend(
+                "force",
+                vim.lsp.protocol.make_client_capabilities(),
+                require("cmp_nvim_lsp").default_capabilities()
+            )
 
             -- Add LSP here
         end,
@@ -155,7 +160,7 @@ return {
             local function debounce(ms, callback)
                 local timer = vim.loop.new_timer()
                 return function(...)
-                    local argv = {...}
+                    local argv = { ... }
                     timer:start(ms, 0, function()
                         timer:stop()
                         vim.schedule_wrap(callback)(unpack(argv))
