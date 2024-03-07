@@ -25,6 +25,7 @@ if status is-login
 		set -gx _JAVA_AWT_WM_NONREPARENTING 1
 		set -gx MOZ_ENABLE_WAYLAND 1
 		set -gx MOZ_DBUS_REMOTE 1
+		set -gx GTK_USE_PORTAL 1
 
 		set -l timestamp (date +%F-%R)
 		exec river -log-level warning > /tmp/river-$timestamp.log 2>&1
