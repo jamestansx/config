@@ -1,0 +1,44 @@
+#!/bin/sh
+
+# Background and border color
+riverctl border-width 1
+riverctl background-color 0x181616
+riverctl border-color-focused 0xC4B28A
+riverctl border-color-unfocused 0x282727
+riverctl border-color-urgent 0xE82424
+
+# Important!!!
+# Must be set so that some applications are working correctly
+riverctl spawn "dbus-update-activation-environment --systemd \
+	WAYLAND_DISPLAY XDG_CURRENT_DESKTOP \
+	XDG_SESSION_DESKTOP XDG_SESSION_TYPE \
+	DBUS_SESSION_BUS_ADDRESS"
+riverctl spawn "systemctl --user import-environment \
+	WAYLAND_DISPLAY XDG_CURRENT_DESKTOP \
+	XDG_SESSION_DESKTOP XDG_SESSION_TYPE \
+	DBUS_SESSION_BUS_ADDRESS"
+
+# Keyboard settings
+riverctl keyboard-layout -options "caps:swapescape,compose:ralt" us
+riverctl set-repeat 80 300
+
+# Touchpad settings
+riverctl input *_Touchpad events disabled-on-external-mouse
+riverctl input *_Touchpad accel-profile adaptive
+riverctl input *_Touchpad pointer-accel 0.45
+riverctl input *_Touchpad click-method clickfinger
+riverctl input *_Touchpad natural-scroll enabled
+riverctl input *_Touchpad tap enabled
+
+# XXX: If I am not used to this behaviour, switch back to
+# riverctl focus-follows-cursor normal
+# riverctl set-cursor-warp on-output-change
+riverctl focus-follows-cursor always
+riverctl hide-cursor when-typing enabled
+riverctl set-cursor-warp on-focus-change
+
+# Rules configuration
+riverctl rule-add ssd
+riverctl rule-add -title Picture-in-Picture float
+riverctl rule-add -app-id xdg-desktop-portal-gtk float
+riverctl rule-add -app-id Gimp* float
