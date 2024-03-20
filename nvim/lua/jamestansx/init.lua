@@ -287,6 +287,7 @@ if package.loaded["lazy"] == nil then
                     "tohtml",
                     "tutor",
                     "zipPlugin",
+                    "matchparen",
                 },
             },
         },
